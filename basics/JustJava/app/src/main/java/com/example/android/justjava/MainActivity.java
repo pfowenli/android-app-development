@@ -41,9 +41,22 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
         int price = calculatePrice();
-        String priceMessage = "Total = " + NumberFormat.getCurrencyInstance().format(price);
-        priceMessage += "\nThank you!";
+        String priceMessage = createOrderSummary(price);
         displayMessage(priceMessage);
+    }
+
+    /**
+     * This method creates order summary.
+     *
+     * @ param price total price
+     * @ return message order summary
+     */
+    private String createOrderSummary(int price) {
+        String message = "Name: Owen Li";
+        message += "\nQuantity: " + quantity;
+        message += "\nTotal: " + NumberFormat.getCurrencyInstance().format(price);
+        message += "\nThank you!";
+        return message;
     }
 
     /**
@@ -52,16 +65,15 @@ public class MainActivity extends AppCompatActivity {
      * @return total price
      */
     private int calculatePrice() {
-        int price = quantity * 5;
-        return price;
+        return quantity * 5;
     }
 
     /**
      * This method displays the given quantity value on the screen.
      */
-    private void displayQuantity(int number) {
+    private void displayQuantity(int numberOfCoffees) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + number);
+        quantityTextView.setText("" + numberOfCoffees);
     }
 
     /**
