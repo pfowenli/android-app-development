@@ -2,13 +2,18 @@ package com.example.android.justjava;
 
 import java.text.NumberFormat;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * This app displays an order form to order coffee.
@@ -27,6 +32,16 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the plus button is clicked.
      */
     public void increment(View view) {
+        if (quantity == 100) {
+            // pop up toast message
+            Context context = getApplicationContext();
+            CharSequence text = "At most 100 cups of coffee!";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
+            return;
+        }
         quantity += 1;
         displayQuantity(quantity);
     }
@@ -35,6 +50,16 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the minus button is clicked.
      */
     public void decrement(View view) {
+        if (quantity <= 1) {
+            // pop up toast message
+            Context context = getApplicationContext();
+            CharSequence text = "At least 1 cup of coffee!";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
+            return;
+        }
         quantity -= 1;
         displayQuantity(quantity);
     }
